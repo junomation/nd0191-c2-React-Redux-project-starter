@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav component renders correctly with mocked data 1`] = `
+<nav
+  class="nav"
+>
+  <ul>
+    <li>
+      <a
+        class="active"
+        href="/"
+      >
+        Home
+      </a>
+    </li>
+    <li>
+      <a
+        class="inactive"
+        href="/add"
+      >
+        New Question
+      </a>
+    </li>
+    <li>
+      <a
+        class="inactive"
+        href="/leaderboard"
+      >
+        Leaderboard
+      </a>
+    </li>
+    <li
+      class="authed-user"
+    >
+      <span
+        class="nav-welcome"
+      >
+        Hello, 
+        John Doe
+      </span>
+      <button
+        class="nav-logout"
+      >
+        Logout
+      </button>
+    </li>
+  </ul>
+</nav>
+`;

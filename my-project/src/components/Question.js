@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { handleSaveQuestionAnswer } from '../actions/shared';
 import { withRouter } from '../utils/helpers';
 import { AiFillCheckCircle } from 'react-icons/ai';
@@ -8,8 +8,7 @@ import ProtTypes from 'prop-types';
 
 
 function Question(props) {
-  const { question, author, authedUser, dispatch } = props;
-  const users = useSelector((state) => state.users);
+  const { question, author, authedUser, dispatch, users } = props;
   const handleSubmit = (e) => {
     e.preventDefault();
     const answer = e.target.elements.answer.value;
@@ -75,10 +74,12 @@ function mapStateToProps({ authedUser, users, questions }, props) {
   const question_id = props.router.params.id;
   const question = questions[question_id];
   const author = question ? users[question.author] : null;
+
   return {
     authedUser,
     question,
     author,
+    users,
   };
 }
 
