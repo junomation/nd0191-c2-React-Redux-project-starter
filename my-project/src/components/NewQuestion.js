@@ -47,7 +47,10 @@ const NewQuestion = () => {
       <h1>Create New Question</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Would you rather...
+          Would You Rather
+        </label>
+        <br />
+        <label>
           <input type='text' value={optionOneText} onChange={handleOptionOneChange} />
         </label>
         <p>OR</p>
