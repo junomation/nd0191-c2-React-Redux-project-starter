@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import App from './components/App';
 import middleware from './middleware';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 const store = configureStore({
   reducer,
@@ -16,8 +15,6 @@ const store = configureStore({
 const root = document.getElementById('root');
 ReactDOM.createRoot(root).render(
   <Provider store={store}>
-    <Router>
       <App />
-    </Router>
   </Provider>,
 );
