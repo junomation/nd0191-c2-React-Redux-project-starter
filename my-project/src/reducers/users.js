@@ -19,14 +19,6 @@ export default function users(state = {}, action) {
       };
     case ADD_USER_ANSWER:
       const { authedUser, qid, answer } = action;
-      
-      console.log('authedUser: ', authedUser);
-      console.log('qid: ', qid);
-      console.log('answer: ', answer);
-      console.log('state: ', state);
-      console.log('state[authedUser]: ', state[authedUser]);
-      console.log('state[authedUser].answers: ', state[authedUser].answers);
-      console.log('state[authedUser].answers[qid]: ', state[authedUser].answers[qid]);
       return {
         ...state,
         [authedUser]: {
