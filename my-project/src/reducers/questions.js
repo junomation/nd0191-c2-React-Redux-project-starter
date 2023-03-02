@@ -14,7 +14,11 @@ export default function questions (state = {}, action) {
         [question.id]: question,
       }
     case SAVE_QUESTION_ANSWER :
-      const { authedUser, qid, answer } = action.answerInfo
+      const { authedUser, qid, answer } = action
+      console.log("state in questions reducer: ", state);
+      console.log("qid in questions reducer: ", qid);
+      console.log("answer in questions reducer: ", answer);
+      console.log("authedUser in questions reducer: ", authedUser);
       return {
         ...state,
         [qid]: {
