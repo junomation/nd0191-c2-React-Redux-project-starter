@@ -2,6 +2,9 @@ import React from 'react';
 import { connect, useSelector } from 'react-redux';
 import { handleSaveQuestionAnswer } from '../actions/shared';
 import { withRouter } from '../utils/helpers';
+import { AiFillCheckCircle } from 'react-icons/ai';
+import styles from './Question.module.css';
+
 
 function Question(props) {
   const { question, author, authedUser, dispatch } = props;
@@ -33,10 +36,12 @@ function Question(props) {
         {question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
           ? (
             <div>
-              <p style={{fontWeight: question.optionOne.votes.includes(authedUser) ? 'bold' : 'normal'}}>
+              <p>
+                {question.optionOne.votes.includes(authedUser) ? <AiFillCheckCircle className={styles["icon-checked"]}/> : null}
                 {optionOne} ({optionOneVotes} votes) - {optionOnePercentage}%
               </p>
-              <p style={{fontWeight: question.optionTwo.votes.includes(authedUser) ? 'bold' : 'normal'}}>
+              <p>
+                {question.optionTwo.votes.includes(authedUser) ? <AiFillCheckCircle className={styles["icon-checked"]}/> : null}
                 {optionTwo} ({optionTwoVotes} votes) - {optionTwoPercentage}%
               </p>
             </div>
