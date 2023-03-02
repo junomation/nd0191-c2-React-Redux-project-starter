@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { handleAddQuestion } from '../actions/shared';
+import ProtTypes from 'prop-types';
 
 const NewQuestion = () => {
   const [optionOneText, setOptionOneText] = useState('');
@@ -62,6 +63,10 @@ const NewQuestion = () => {
       </form>
     </div>
   );
+};
+
+NewQuestion.propTypes = {
+  authedUser: ProtTypes.string,
 };
 
 export default NewQuestion;

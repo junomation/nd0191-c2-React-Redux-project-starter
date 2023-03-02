@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../utils/helpers';
 import { useSelector } from 'react-redux';
+import ProtTypes from 'prop-types';
 
 const QuestionPreview = (props) => {
   const { question } = props;
@@ -17,5 +18,9 @@ const QuestionPreview = (props) => {
     </div>
   );
 }
+
+QuestionPreview.propTypes = {
+  question: ProtTypes.object.isRequired,
+};
 
 export default QuestionPreview;

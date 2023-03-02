@@ -4,6 +4,7 @@ import { handleSaveQuestionAnswer } from '../actions/shared';
 import { withRouter } from '../utils/helpers';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import styles from './Question.module.css';
+import ProtTypes from 'prop-types';
 
 
 function Question(props) {
@@ -24,10 +25,6 @@ function Question(props) {
   const totalVotes = optionOneVotes + optionTwoVotes;
   const optionOnePercentage = ((optionOneVotes / totalVotes) * 100).toFixed(2);
   const optionTwoPercentage = ((optionTwoVotes / totalVotes) * 100).toFixed(2);
-
-  console.log(users);
-  console.log(author.id);
-  console.log(users[author.id]);
 
   const createdByUserAvatar = users[author.id].avatarURL;
   return (
@@ -67,18 +64,15 @@ function Question(props) {
   );
 }
 
-function mapStateToProps({ authedUser, users, questions }, props) {
-  let question_id = null;
-  if(props.router.params)
-  {
-    question_id = props.router.params.id;
-  }
+Question.propTypes = {
+  question: ProtTypes.object.isRequired,
+  author: ProtTypes.object.isRequired,
+  authedUser: ProtTypes.string.isRequired,
+  dispatch: ProtTypes.func.isRequired,
+};
 
-  if(props.id)
-  {
-    ({question_id} = props.id);
-  }
-  
+function mapStateToProps({ authedUser, users, questions }, props) {
+  const question_id = props.router.params.id;
   const question = questions[question_id];
   const author = question ? users[question.author] : null;
   return {

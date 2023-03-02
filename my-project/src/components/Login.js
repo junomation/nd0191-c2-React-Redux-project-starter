@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { handleLogin } from '../actions/authedUser'
 import { useNavigate, useLocation } from 'react-router-dom'
+import ProtTypes from 'prop-types';
 
 const Login = ({ dispatch }) => {
   const [userId, setUserId] = useState('')
@@ -35,6 +36,10 @@ const Login = ({ dispatch }) => {
       </form>
     </div>
   )
+}
+
+Login.propTypes = {
+  dispatch: ProtTypes.func.isRequired
 }
 
 export default connect()(Login)
