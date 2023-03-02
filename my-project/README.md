@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# **Would You Rather Project**
+This is a web application that lets users post and answer "Would You Rather" questions. Users can view a list of questions, view individual questions, answer questions, and create new questions.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was built using React, Redux, and React Router.
 
-## Available Scripts
+## **Installation**
+To run this project locally, follow these steps:
 
-In the project directory, you can run:
+Clone this repository onto your local machine
+```
+git clone https://github.com/junomation/nd0191-c2-React-Redux-project-starter.git
+```
 
-### `npm start`
+change directory into the my-project directory since this is the project directory that's created with `create-react-app`:
+```
+cd my-project
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Run ```npm install``` to install the required dependencies
+```
+npm install
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Run ```npm start``` to start the development server
+```
+npm start
+```
 
-### `npm test`
+The application should now be running at http://localhost:3000.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **Testing**
 
-### `npm run build`
+To run tests, use the command ```npm test``` in the project directory. This will launch the Jest test runner and execute the test suite.
+```
+npm test
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## **Usage**
+### *Login*
+Before you can access any of the features of this application, you must log in with a valid user account. If you do not have a user account, you can create one by clicking the "Sign Up" button on the login page.
 
-### `npm run eject`
+### *Home*
+After logging in, you will be taken to the home page, where you can view a list of all of the "Would You Rather" questions that have been posted. You can click on a question to view the details of the question, including the two options and the number of votes each option has received.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### *Question Details*
+On the question details page, you can vote for one of the two options by clicking the "Submit" button. Once you have voted, you will see the current vote totals for each option.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### *New Question*
+To create a new "Would You Rather" question, click the "New Question" button on the navigation bar. You will be prompted to enter the two options for the question, and then the new question will be added to the list on the home page.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### *Leaderboard*
+The leaderboard page shows a ranking of users based on the number of questions they have posted and the number of questions they have answered.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### *Navigation*
+The navigation bar at the top of the page allows you to easily navigate between the different sections of the application

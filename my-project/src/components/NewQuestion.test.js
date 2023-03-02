@@ -43,6 +43,7 @@ describe('NewQuestion component', () => {
 
     // Enter valid input and submit the form
     fireEvent.change(optionOneInput, { target: { value: 'Option One' } });
+    expect(optionOneInput.value).toBe('Option One');
     fireEvent.change(optionTwoInput, { target: { value: 'Option Two' } });
     fireEvent.click(submitButton);
     expect(mockDispatch).toHaveBeenCalledTimes(1);
