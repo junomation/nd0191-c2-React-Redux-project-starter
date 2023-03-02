@@ -6,8 +6,11 @@ import styles from './Nav.module.css';
 
 const Nav = () => {
   const authedUser = useSelector((state) => state.authedUser);
+  const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const location = useLocation();
+
+  const userName = users[authedUser]?.name;
 
   const handleLogout = () => {
     dispatch(setAuthedUser(null));
@@ -50,7 +53,7 @@ const Nav = () => {
         </li>
         {authedUser && (
           <li className={styles['authed-user']}>
-            <span className={styles['nav-welcome']}>Hello, {authedUser}</span>
+            <span className={styles['nav-welcome']}>Hello, {userName}</span>
             <button
               className={styles['nav-logout']}
               onClick={handleLogout}
