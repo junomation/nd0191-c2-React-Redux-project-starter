@@ -18,9 +18,14 @@ const Home = () => {
   }, [authedUser, navigate]);
 
   const answeredQuestions = Object.keys(users[authedUser].answers);
+
+  const answeredQuestionsList = Object.keys(questions)
+    .filter(q => answeredQuestions.includes(q))
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+
   const unansweredQuestions = Object.keys(questions)
     .filter(q => !answeredQuestions.includes(q))
-    .sort((a, b) => b.timestamp - a.timestamp);
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
   const handleTabChange = e => {
     setShowAnswered(e.target.name === 'answered');
@@ -46,7 +51,7 @@ const Home = () => {
       </div>
       <ul className="question-list">
         {showAnswered
-          ? answeredQuestions.map(qid => (
+          ? answeredQuestionsList.map(qid => (
               <li key={qid}>
                 <Question id={{ question_id: qid }} />
               </li>

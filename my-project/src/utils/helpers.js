@@ -22,6 +22,5 @@ export function formatDate (timestamp) {
   }
   
 export function sortQuestionsByTimestamp (questions) {
-    return Object.values(questions).sort((a, b) => b.timestamp - a.timestamp)
+    return Object.values(questions).sort((a, b) => a.timestamp < b.timestamp)
   }
-  
