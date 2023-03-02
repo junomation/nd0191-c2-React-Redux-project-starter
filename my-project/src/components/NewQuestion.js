@@ -28,7 +28,12 @@ const NewQuestion = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (optionOneText !== '' && optionTwoText !== '') {
-      dispatch(handleAddQuestion(optionOneText, optionTwoText, authedUser));
+      let formattedQuestion = {
+        optionOneText,
+        optionTwoText,
+        author: authedUser,
+      };
+      dispatch(handleAddQuestion(formattedQuestion));
       setOptionOneText('');
       setOptionTwoText('');
       navigate('/');

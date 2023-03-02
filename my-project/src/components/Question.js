@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'; // Import Link
 import { handleSaveQuestionAnswer } from '../actions/questions';
+import { withRouter } from '../utils/helpers';
 
 function Question(props) {
   const { question, author, authedUser, dispatch } = props;
@@ -21,35 +23,47 @@ function Question(props) {
   const optionTwoPercentage = ((optionTwoVotes / totalVotes) * 100).toFixed(2);
 
   return (
-    <div>
-      <h2>{author.name} asks:</h2>
-      <h3>Would you rather...</h3>
-      {question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
-        ? (
-          <div>
-            <p>{optionOne} ({optionOneVotes} votes) - {optionOnePercentage}%</p>
-            <p>{optionTwo} ({optionTwoVotes} votes) - {optionTwoPercentage}%</p>
-          </div>
-        )
-        : (
-          <form onSubmit={handleSubmit}>
+      <div>
+        <Link to={`/questions/${question.id}`}> {/* Wrap the content inside Link */}
+        <h2>{author.name} asks:</h2>
+        <h3>Would you rather...</h3>
+        </Link>
+        {question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
+          ? (
             <div>
-              <input type="radio" id="optionOne" name="answer" value="optionOne" />
-              <label htmlFor="optionOne">{optionOne}</label>
+              <p>{optionOne} ({optionOneVotes} votes) - {optionOnePercentage}%</p>
+              <p>{optionTwo} ({optionTwoVotes} votes) - {optionTwoPercentage}%</p>
             </div>
-            <div>
-              <input type="radio" id="optionTwo" name="answer" value="optionTwo" />
-              <label htmlFor="optionTwo">{optionTwo}</label>
-            </div>
-            <button type="submit">Submit</button>
-          </form>
-        )}
-    </div>
+          )
+          : (
+            <form onSubmit={handleSubmit}>
+              <div>
+                <input type="radio" id="optionOne" name="answer" value="optionOne" />
+                <label htmlFor="optionOne">{optionOne}</label>
+              </div>
+              <div>
+                <input type="radio" id="optionTwo" name="answer" value="optionTwo" />
+                <label htmlFor="optionTwo">{optionTwo}</label>
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          )}
+      </div>
   );
 }
 
-function mapStateToProps({ authedUser, users, questions }, { id }) {
-  const { question_id } = id;
+function mapStateToProps({ authedUser, users, questions }, props) {
+  let question_id = null;
+  if(props.router.params)
+  {
+    question_id = props.router.params.id;
+  }
+
+  if(props.id)
+  {
+    ({question_id} = props.id);
+  }
+  
   const question = questions[question_id];
   const author = question ? users[question.author] : null;
   return {
@@ -59,4 +73,4 @@ function mapStateToProps({ authedUser, users, questions }, { id }) {
   };
 }
 
-export default connect(mapStateToProps)(Question);
+export default withRouter(connect(mapStateToProps)(Question));
