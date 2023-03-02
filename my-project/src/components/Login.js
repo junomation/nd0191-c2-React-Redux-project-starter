@@ -23,7 +23,7 @@ const Login = ({ dispatch, location, navigate }) => {
     <div className='login'>
       <h1>Would You Rather App</h1>
       <form onSubmit={handleLoginSubmit}>
-        <select value={userInfo} onChange={handleUserIdChange}>
+        <select value={userInfo ? JSON.stringify(userInfo) : ''} onChange={handleUserIdChange}>
           <option value={JSON.stringify({id:'', password: ''})}>Select User</option>
           <option value={JSON.stringify({id:'sarahedo', password: 'password123'})}>Sarah Edo</option>
           <option value={JSON.stringify({id:'tylermcginnis', password: 'abc321'})}>Tyler McGinnis</option>
@@ -43,7 +43,6 @@ Login.propTypes = {
 const mapStateToProps = ({},props) => {
   const location = props.router.location;
   const navigate = props.router.navigate;
-  console.log(location);
   return {
     location,
     navigate
