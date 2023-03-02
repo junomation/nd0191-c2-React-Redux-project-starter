@@ -18,17 +18,24 @@ export default function users(state = {}, action) {
         }
       };
     case ADD_USER_ANSWER:
-      const { answer } = action;
-
+      const { authedUser, qid, answer } = action;
+      
+      console.log('authedUser: ', authedUser);
+      console.log('qid: ', qid);
+      console.log('answer: ', answer);
+      console.log('state: ', state);
+      console.log('state[authedUser]: ', state[authedUser]);
+      console.log('state[authedUser].answers: ', state[authedUser].answers);
+      console.log('state[authedUser].answers[qid]: ', state[authedUser].answers[qid]);
       return {
         ...state,
-        [answer.authedUser]: {
-          ...state[answer.authedUser],
+        [authedUser]: {
+          ...state[authedUser],
           answers: {
-            ...state[answer.authedUser].answers,
-            [answer.qid]: answer.answer
+            ...state[authedUser].answers,
+            [qid]: answer
           }
-        }
+        }        
       };
     default:
       return state;
