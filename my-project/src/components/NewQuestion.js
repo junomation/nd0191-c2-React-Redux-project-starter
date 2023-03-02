@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { handleAddQuestion } from '../actions/questions';
+import { handleAddQuestion } from '../actions/shared';
 
 const NewQuestion = () => {
   const [optionOneText, setOptionOneText] = useState('');

@@ -5,19 +5,10 @@ export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
 
-function addQuestion(question) {
+export function addQuestion(question) {
   return {
     type: ADD_QUESTION,
     question,
-  };
-}
-
-export function handleAddQuestion(question) {
-  return (dispatch) => {
-    //dispatch(showLoading())
-    return saveQuestionAPI(question)
-      .then((formattedQuestion) => dispatch(addQuestion(formattedQuestion)))
-      //.then(() => dispatch(hideLoading()))
   };
 }
 

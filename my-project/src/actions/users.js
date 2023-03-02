@@ -1,4 +1,3 @@
-import { saveQuestionAnswer, saveQuestion } from "../utils/api";
 // import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 export const RECEIVE_USERS = "RECEIVE_USERS";
@@ -25,32 +24,5 @@ export function addUserAnswer({ authedUser, qid, answer }) {
     authedUser,
     qid,
     answer,
-  };
-}
-
-export function handleSaveQuestionAnswer(info) {
-  return (dispatch) => {
-    //dispatch(showLoading());
-    //.then(() => dispatch(hideLoading()))
-    return saveQuestionAnswer(info)
-      .then(() => dispatch(addUserAnswer(info)))
-      
-      .catch((e) => {
-        console.warn("Error in handleSaveQuestionAnswer: ", e);
-        alert("There was an error saving the answer. Try again.");
-      });
-  };
-}
-
-export function handleSaveQuestion(question) {
-  return (dispatch) => {
-    //dispatch(showLoading());
-    //.then(() => dispatch(hideLoading()))
-    return saveQuestion(question)
-      .then((question) => dispatch(addUserQuestion(question)))      
-      .catch((e) => {
-        console.warn("Error in handleSaveQuestion: ", e);
-        alert("There was an error saving the question. Try again.");
-      });
   };
 }

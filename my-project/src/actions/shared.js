@@ -1,7 +1,7 @@
 import { _getQuestions, _getUsers } from "../utils/_DATA";
-import { saveQuestionAnswer as saveQuestionAnswerAPI } from '../utils/api'
-import { receiveQuestions, saveQuestionAnswer } from "./questions";
-import { receiveUsers, addUserAnswer } from "./users";
+import { saveQuestionAnswer as saveQuestionAnswerAPI, saveQuestion as saveQuestionAPI } from '../utils/api'
+import { receiveQuestions, saveQuestionAnswer, addQuestion } from "./questions";
+import { receiveUsers, addUserAnswer, addUserQuestion } from "./users";
 import { setAuthedUser } from "./authedUser";
 
 export const handleInitialData = () => (dispatch, getState) => {
@@ -35,5 +35,18 @@ export function handleSaveQuestionAnswer(authedUser, qid, answer) {
       dispatch(addUserAnswer({authedUser, qid, answer: null}));
       alert("There was an error saving the answer. Please try again.");
     });
+  };
+}
+
+
+export function handleAddQuestion(question) {
+  return (dispatch) => {
+    //dispatch(showLoading())
+    return saveQuestionAPI(question)
+      .then((formattedQuestion) => {
+        dispatch(addQuestion(formattedQuestion))
+        dispatch(addUserQuestion(formattedQuestion))
+      })
+      //.then(() => dispatch(hideLoading()))
   };
 }
