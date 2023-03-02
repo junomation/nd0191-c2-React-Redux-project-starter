@@ -5,6 +5,7 @@ import { withRouter } from '../utils/helpers';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import styles from './Question.module.css';
 import ProtTypes from 'prop-types';
+import NotFound from './NotFound';
 
 
 function Question(props) {
@@ -17,7 +18,7 @@ function Question(props) {
     }
   };
 
-  if(question === undefined) return(<h1>404 Page Not Found</h1>)
+  if(question === undefined) return(<NotFound/>)
 
   const optionOne = question.optionOne.text;
   const optionTwo = question.optionTwo.text;

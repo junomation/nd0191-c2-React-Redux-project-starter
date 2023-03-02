@@ -11,6 +11,7 @@ import Nav from './Nav';
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import LoadingBar from 'react-redux-loading-bar';
 import { bindActionCreators } from 'redux';
+import NotFound from './NotFound';
 
 function App(){
     const dispatch = useDispatch();
@@ -45,7 +46,7 @@ function App(){
                             element={authedUser? <LeaderBoard /> : <Login />}
                         />
                         <Route path="/login" element={<Login />} />
-                        <Route path="*" element={<h1>404 Page Not Found</h1>} />
+                        <Route path="*" element={<NotFound/>} />
                     </Routes>
                 </div>
             </Router>  
