@@ -1,31 +1,24 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Nav = () => {
-  const navigate = useNavigate();
-
-  const handleNavigate = (e, path) => {
-    e.preventDefault();
-    navigate(path);
-  }
-
   return (
     <nav className='nav'>
       <ul>
         <li>
-          <a href='/' className='active' onClick={(e) => handleNavigate(e, '/')}>
+          <Link to='/' className='active'>
             Home
-          </a>
+          </Link>
         </li>
         <li>
-          <a href='/add' onClick={(e) => handleNavigate(e, '/add')}>
+          <Link to='/add'>
             New Question
-          </a>
+          </Link>
         </li>
         <li>
-          <a href='/leaderboard' onClick={(e) => handleNavigate(e, '/leaderboard')}>
+          <Link to='/leaderboard'>
             Leaderboard
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
