@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Question from './Question';
+import QuestionPreview from './QuestionPreview';
 
 const Home = () => {
   const [showAnswered, setShowAnswered] = useState(false);
@@ -53,12 +53,12 @@ const Home = () => {
         {showAnswered
           ? answeredQuestionsList.map(qid => (
               <li key={qid}>
-                <Question id={{ question_id: qid }} />
+                <QuestionPreview question = {questions[qid]} />
               </li>
             ))
           : unansweredQuestions.map(qid => (
               <li key={qid}>
-                <Question id={{ question_id: qid }} />
+                <QuestionPreview question = {questions[qid]} />
               </li>
             ))}
       </ul>
