@@ -5,19 +5,19 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import ProtTypes from 'prop-types';
 
 const Login = ({ dispatch }) => {
-  const [userId, setUserId] = useState('')
+  const [userInfo, setUserInfo] = useState('')
   const location = useLocation();
   const navigate = useNavigate()
 
   const handleUserIdChange = (e) => {
-    const value = e.target.value
-    setUserId(value)
+    const value = e.target.value;
+    setUserInfo(JSON.parse(value));
   }
 
   const handleLoginSubmit = (e) => {
-    e.preventDefault()
-    dispatch(handleLogin(userId))
-    setUserId('')
+    e.preventDefault();
+    dispatch(handleLogin(userInfo));
+    setUserInfo(JSON.stringify({id:'', password: ''}));
     navigate(location?.state?.from || '/');
   }
 
@@ -25,12 +25,12 @@ const Login = ({ dispatch }) => {
     <div className='login'>
       <h1>Would You Rather App</h1>
       <form onSubmit={handleLoginSubmit}>
-        <select value={userId} onChange={handleUserIdChange}>
-          <option value=''>Select User</option>
-          <option value='sarahedo'>Sarah Edo</option>
-          <option value='tylermcginnis'>Tyler McGinnis</option>
-          <option value='mtsamis'>Mike Tsamis</option>
-          <option value='zoshikanlu'>Zenobia Oshikanlu</option>
+        <select value={userInfo} onChange={handleUserIdChange}>
+          <option value={JSON.stringify({id:'', password: ''})}>Select User</option>
+          <option value={JSON.stringify({id:'sarahedo', password: 'password123'})}>Sarah Edo</option>
+          <option value={JSON.stringify({id:'tylermcginnis', password: 'abc321'})}>Tyler McGinnis</option>
+          <option value={JSON.stringify({id:'mtsamis', password: 'xyz123'})}>Mike Tsamis</option>
+          <option value={JSON.stringify({id:'zoshikanlu', password: 'pass246'})}>Zenobia Oshikanlu</option>
         </select>
         <button type='submit'>Login</button>
       </form>

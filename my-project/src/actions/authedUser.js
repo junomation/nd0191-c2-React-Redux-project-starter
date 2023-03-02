@@ -1,4 +1,4 @@
-import { _getUsers } from '../utils/_DATA'
+import {authenticateUser} from '../utils/auth'
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'
@@ -10,11 +10,13 @@ export function setAuthedUser (id) {
   }
 }
 
-export function handleLogin (id) {
+export function handleLogin (userInfo) {
   return (dispatch) => {
     dispatch(showLoading())
-    return _getUsers().then((users) => {
-      dispatch(setAuthedUser(id))
+    const {id, password} = userInfo;
+    return authenticateUser(id, password).then((userId) => {
+      console.log(userId);
+      dispatch(setAuthedUser(userId))
       dispatch(hideLoading())
     })
   }
