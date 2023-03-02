@@ -19,7 +19,7 @@ const Home = () => {
 
   const answeredQuestions = Object.keys(users[authedUser].answers);
   const unansweredQuestions = Object.keys(questions)
-    .filter(q => !answeredQuestions.includes(q.id))
+    .filter(q => !answeredQuestions.includes(q))
     .sort((a, b) => b.timestamp - a.timestamp);
 
   const handleTabChange = e => {
