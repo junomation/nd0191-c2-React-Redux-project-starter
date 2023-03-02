@@ -1,4 +1,4 @@
-import { _getUsers } from '../_DATA';
+import { _getUsers } from './_DATA';
 
 // Authenticate the user by checking if their username and password match an existing user
 export function authenticateUser(username, password) {
