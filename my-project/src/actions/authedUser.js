@@ -1,5 +1,5 @@
 import { _getUsers } from '../utils/_DATA'
-//import { showLoading, hideLoading } from 'react-redux-loading'
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'
 
@@ -12,10 +12,10 @@ export function setAuthedUser (id) {
 
 export function handleLogin (id) {
   return (dispatch) => {
-    //dispatch(showLoading())
+    dispatch(showLoading())
     return _getUsers().then((users) => {
       dispatch(setAuthedUser(id))
-      //dispatch(hideLoading())
+      dispatch(hideLoading())
     })
   }
 }

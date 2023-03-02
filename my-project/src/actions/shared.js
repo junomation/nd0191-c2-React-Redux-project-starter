@@ -3,6 +3,7 @@ import { saveQuestionAnswer as saveQuestionAnswerAPI, saveQuestion as saveQuesti
 import { receiveQuestions, saveQuestionAnswer, addQuestion } from "./questions";
 import { receiveUsers, addUserAnswer, addUserQuestion } from "./users";
 import { setAuthedUser } from "./authedUser";
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 export const handleInitialData = () => (dispatch, getState) => {
   const { authedUser } = getState();
@@ -26,8 +27,10 @@ export function handleSaveQuestionAnswer(authedUser, qid, answer) {
   return (dispatch) => {
     const info = { authedUser, qid, answer };
 
+    dispatch(showLoading());
     dispatch(saveQuestionAnswer(authedUser, qid, answer));
     dispatch(addUserAnswer(info));
+    dispatch(hideLoading());
 
     return saveQuestionAnswerAPI(info).catch((error) => {
       console.warn("Error in handleSaveQuestionAnswer:", error);
@@ -41,12 +44,12 @@ export function handleSaveQuestionAnswer(authedUser, qid, answer) {
 
 export function handleAddQuestion(question) {
   return (dispatch) => {
-    //dispatch(showLoading())
+    dispatch(showLoading())
     return saveQuestionAPI(question)
       .then((formattedQuestion) => {
         dispatch(addQuestion(formattedQuestion))
         dispatch(addUserQuestion(formattedQuestion))
       })
-      //.then(() => dispatch(hideLoading()))
+      .then(() => dispatch(hideLoading()))
   };
 }

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { handleInitialData } from '../actions/shared';
 import Login from './Login';
@@ -8,18 +8,24 @@ import Question from './Question';
 import NewQuestion from './NewQuestion';
 import LeaderBoard from './LeaderBoard';
 import Nav from './Nav';
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
+import LoadingBar from 'react-redux-loading-bar';
+import { bindActionCreators } from 'redux';
 
 function App(){
     const dispatch = useDispatch();
     const authedUser = useSelector(state => state.authedUser);
 
     useEffect(() => {
+        dispatch(showLoading);
         dispatch(handleInitialData());
+        dispatch(hideLoading);
     }, [dispatch]);
 
     return (
             <Router>
                 <div className="container">
+                    <LoadingBar/>
                     <Nav />
                     <Routes>
                         <Route
@@ -46,4 +52,17 @@ function App(){
     );
 };
 
-export default App;
+const mapStaeToProps = (state) => {
+    return {
+        authedUser: state.authedUser,
+        loadingBar: state.loadingBar
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(
+      { handleInitialData },
+      dispatch,
+    ),
+  })
+export default connect(mapStaeToProps, mapDispatchToProps)(App);
