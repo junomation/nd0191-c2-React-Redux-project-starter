@@ -1,11 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'; // Import Link
+import { connect, useSelector } from 'react-redux';
 import { handleSaveQuestionAnswer } from '../actions/shared';
 import { withRouter } from '../utils/helpers';
 
 function Question(props) {
   const { question, author, authedUser, dispatch } = props;
+  const users = useSelector((state) => state.users);
   const handleSubmit = (e) => {
     e.preventDefault();
     const answer = e.target.elements.answer.value;
@@ -22,12 +22,14 @@ function Question(props) {
   const optionOnePercentage = ((optionOneVotes / totalVotes) * 100).toFixed(2);
   const optionTwoPercentage = ((optionTwoVotes / totalVotes) * 100).toFixed(2);
 
+  console.log(users);
+  console.log(author.id);
+  console.log(users[author.id]);
+
+  const createdByUserAvatar = users[author.id].avatarURL;
   return (
       <div>
-        <Link to={`/questions/${question.id}`}> {/* Wrap the content inside Link */}
-        <h2>{author.name} asks:</h2>
-        <h3>Would you rather...</h3>
-        </Link>
+
         {question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
           ? (
             <div>
@@ -40,7 +42,10 @@ function Question(props) {
             </div>
           )
           : (
-            <form onSubmit={handleSubmit}>
+            <div>
+              <h3>Would You Rather</h3>
+              <img src={createdByUserAvatar} alt={author.name}/>
+              <form onSubmit={handleSubmit}>
               <div>
                 <input type="radio" id="optionOne" name="answer" value="optionOne" />
                 <label htmlFor="optionOne">{optionOne}</label>
@@ -51,6 +56,7 @@ function Question(props) {
               </div>
               <button type="submit">Submit</button>
             </form>
+            </div>
           )}
       </div>
   );
