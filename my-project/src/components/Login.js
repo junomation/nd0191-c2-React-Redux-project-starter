@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { handleLogin } from '../actions/authedUser'
-import { useNavigate, useLocation } from 'react-router-dom'
 import ProtTypes from 'prop-types';
+import { withRouter } from '../utils/helpers';
 
-const Login = ({ dispatch }) => {
-  const [userInfo, setUserInfo] = useState('')
-  const location = useLocation();
-  const navigate = useNavigate()
+const Login = ({ dispatch, location, navigate }) => {
+  const [userInfo, setUserInfo] = useState('');
 
   const handleUserIdChange = (e) => {
     const value = e.target.value;
@@ -18,7 +16,7 @@ const Login = ({ dispatch }) => {
     e.preventDefault();
     dispatch(handleLogin(userInfo));
     setUserInfo(JSON.stringify({id:'', password: ''}));
-    navigate(location?.state?.from || '/');
+    navigate(location.pathname || '/');
   }
 
   return (
@@ -42,4 +40,14 @@ Login.propTypes = {
   dispatch: ProtTypes.func.isRequired
 }
 
-export default connect()(Login)
+const mapStateToProps = ({},props) => {
+  const location = props.router.location;
+  const navigate = props.router.navigate;
+  console.log(location);
+  return {
+    location,
+    navigate
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Login))

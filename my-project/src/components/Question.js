@@ -17,6 +17,8 @@ function Question(props) {
     }
   };
 
+  if(question === undefined) return(<h1>404 Page Not Found</h1>)
+
   const optionOne = question.optionOne.text;
   const optionTwo = question.optionTwo.text;
   const optionOneVotes = question.optionOne.votes.length;
@@ -64,8 +66,6 @@ function Question(props) {
 }
 
 Question.propTypes = {
-  question: ProtTypes.object.isRequired,
-  author: ProtTypes.object.isRequired,
   authedUser: ProtTypes.string.isRequired,
   dispatch: ProtTypes.func.isRequired,
 };
