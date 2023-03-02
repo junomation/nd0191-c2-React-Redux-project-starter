@@ -31,8 +31,12 @@ function Question(props) {
         {question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
           ? (
             <div>
-              <p>{optionOne} ({optionOneVotes} votes) - {optionOnePercentage}%</p>
-              <p>{optionTwo} ({optionTwoVotes} votes) - {optionTwoPercentage}%</p>
+              <p style={{fontWeight: question.optionOne.votes.includes(authedUser) ? 'bold' : 'normal'}}>
+                {optionOne} ({optionOneVotes} votes) - {optionOnePercentage}%
+              </p>
+              <p style={{fontWeight: question.optionTwo.votes.includes(authedUser) ? 'bold' : 'normal'}}>
+                {optionTwo} ({optionTwoVotes} votes) - {optionTwoPercentage}%
+              </p>
             </div>
           )
           : (
