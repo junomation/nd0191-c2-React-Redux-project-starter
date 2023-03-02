@@ -57,8 +57,6 @@ export function saveQuestionAnswer(authedUser, qid, answer) {
 }
 
 export function handleSaveQuestionAnswer(authedUser, qid, answer) {
-  console.log("qid in handleSaveQuestionAnswer: ", qid);
-  console.log("answer in handleSaveQuestionAnswer: ", answer);
     return (dispatch) => {
       const info = { authedUser, qid, answer };
   
